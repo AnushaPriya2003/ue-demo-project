@@ -1,3 +1,10 @@
+/* Load Universal Editor CORS bridge */
+if (window.location.hostname.endsWith('.aem.page') || window.location.hostname === 'localhost') {
+  const script = document.createElement('script');
+  script.src = 'https://universal-editor-service.adobe.io/cors.js';
+  document.head.appendChild(script);
+}
+
 import {
   loadHeader,
   loadFooter,
