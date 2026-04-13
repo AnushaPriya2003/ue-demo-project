@@ -521,7 +521,7 @@ function decorateSections(main) {
     const sectionIndex = Array.from(main.querySelectorAll('div.section')).length; // Approximate stable index
     const sectionId = section.querySelector('div.section-metadata')?.dataset?.name || `section_${sectionIndex + 1}`;
     section.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root/${sectionId}`);
-    section.setAttribute('data-aue-type', 'container');
+    section.setAttribute('data-aue-type', 'component');
     section.setAttribute('data-aue-model', 'section');
     section.setAttribute('data-aue-label', 'Section');
 
