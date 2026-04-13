@@ -10,10 +10,11 @@ export default function decorate(block) {
 
   /* change to ul, li */
   const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
+  [...block.children].forEach((row, i) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
 
+    li.setAttribute('data-aue-resource', `urn:aemconnection:/content/ue-demo/en/home/jcr:content/root/cards/item_${i}`);
     li.setAttribute('data-aue-type', 'component');
     li.setAttribute('data-aue-model', 'card');
     li.setAttribute('data-aue-label', 'Card');
