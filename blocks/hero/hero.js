@@ -1,23 +1,20 @@
 export default function decorate(block) {
-    // 1. Tell UE this entire block is the "Hero" component
-    // The resource path should match your content path in Google Drive/AEM
-    block.dataset.aueResource = 'urn:aemconnection:/content/ue-demo/en/home/jcr:content/root/hero';
-    block.dataset.aueType = 'component';
-    block.dataset.aueLabel = 'Hero Banner';
+    // Use setAttribute to ensure correct naming
+    block.setAttribute('data-aue-resource', 'urn:aemconnection:/content/ue-demo/en/home/jcr:content/root/hero');
+    block.setAttribute('data-aue-type', 'component');
+    block.setAttribute('data-aue-label', 'Hero Banner');
 
-    // 2. Find the Heading (h1) and make it editable
     const title = block.querySelector('h1');
     if (title) {
-        title.dataset.aueProp = 'title';
-        title.dataset.aueType = 'text';
-        title.dataset.aueLabel = 'Headline';
+        title.setAttribute('data-aue-prop', 'title');
+        title.setAttribute('data-aue-type', 'text');
+        title.setAttribute('data-aue-label', 'Headline');
     }
 
-    // 3. Find the Image and make it editable
     const img = block.querySelector('img');
     if (img) {
-        img.dataset.aueProp = 'image';
-        img.dataset.aueType = 'media';
-        img.dataset.aueLabel = 'Background Image';
+        img.setAttribute('data-aue-prop', 'image');
+        img.setAttribute('data-aue-type', 'media');
+        img.setAttribute('data-aue-label', 'Background Image');
     }
 }
