@@ -3,7 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // --- Universal Editor instrumentation --
-  const path = window.location.pathname === '/' ? '' : window.location.pathname;
+  const path = window.location.pathname === '/' ? '/index' : window.location.pathname;
   block.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root/cards`);
   block.setAttribute('data-aue-type', 'container');
   block.setAttribute('data-aue-filter', 'cards');
