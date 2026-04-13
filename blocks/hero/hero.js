@@ -1,6 +1,7 @@
 export default function decorate(block) {
     // 1. Component Level Attributes
-    block.setAttribute('data-aue-resource', 'urn:aemconnection:/content/ue-demo/en/home/jcr:content/root/hero');
+    const path = window.location.pathname === '/' ? '' : window.location.pathname;
+    block.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root/hero`);
     block.setAttribute('data-aue-type', 'component');
     block.setAttribute('data-aue-model', 'hero');
     block.setAttribute('data-aue-label', 'Hero Banner');
