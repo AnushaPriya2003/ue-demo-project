@@ -27,9 +27,9 @@ export default function decorate(block) {
         div.className = 'cards-card-image';
       } else {
         div.className = 'cards-card-body';
-        div.setAttribute('data-aue-prop', 'text');
-        div.setAttribute('data-aue-type', 'richtext');
-        div.setAttribute('data-aue-label', 'Text');
+        // Wrap text content in a div with proper instrumentation
+        const textContent = div.innerHTML;
+        div.innerHTML = `<div data-aue-prop="text" data-aue-type="richtext" data-aue-label="Text">${textContent}</div>`;
       }
     });
     ul.append(li);
@@ -40,7 +40,7 @@ export default function decorate(block) {
 
     const optImg = optimizedPic.querySelector('img');
     optImg.setAttribute('data-aue-prop', 'image');
-    optImg.setAttribute('data-aue-type', 'reference');
+    optImg.setAttribute('data-aue-type', 'media');
     optImg.setAttribute('data-aue-label', 'Image');
 
     img.closest('picture').replaceWith(optimizedPic);

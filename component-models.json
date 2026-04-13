@@ -145,7 +145,7 @@
     "id": "card",
     "fields": [
       {
-        "component": "reference",
+        "component": "media",
         "valueType": "string",
         "name": "image",
         "label": "Image",
@@ -193,7 +193,7 @@
     "id": "hero",
     "fields": [
       {
-        "component": "reference",
+        "component": "media",
         "valueType": "string",
         "name": "image",
         "label": "Background Image"

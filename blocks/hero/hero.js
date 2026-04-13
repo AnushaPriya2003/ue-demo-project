@@ -18,7 +18,7 @@ export default function decorate(block) {
     const img = block.querySelector('img');
     if (img) {
         img.setAttribute('data-aue-prop', 'image'); // Matches "name": "image" in your JSON
-        img.setAttribute('data-aue-type', 'reference');
+        img.setAttribute('data-aue-type', 'media');
         img.setAttribute('data-aue-label', 'Background Image');
     }
 }
