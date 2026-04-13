@@ -4,7 +4,8 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   // --- Universal Editor instrumentation --
   block.setAttribute('data-aue-resource', 'urn:aemconnection:/content/ue-demo/en/home/jcr:content/root/cards');
-  block.setAttribute('data-aue-type', 'component');
+  block.setAttribute('data-aue-type', 'container');
+  block.setAttribute('data-aue-filter', 'cards');
   block.setAttribute('data-aue-label', 'Cards');
 
   /* change to ul, li */
@@ -12,6 +13,10 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
+
+    li.setAttribute('data-aue-type', 'component');
+    li.setAttribute('data-aue-model', 'card');
+    li.setAttribute('data-aue-label', 'Card');
 
     // Instrument list item as a Card if needed, though prompt implies fields
     while (row.firstElementChild) li.append(row.firstElementChild);
