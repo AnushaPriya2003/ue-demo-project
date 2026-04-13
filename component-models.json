@@ -208,6 +208,18 @@
     ]
   },
   {
+    "id": "headline",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Headline",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "text",
     "fields": [
       {
