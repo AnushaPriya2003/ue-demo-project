@@ -17,7 +17,7 @@ function sampleRUM(checkpoint, data) {
   try {
     window.hlx = window.hlx || {};
     if (!window.hlx.rum || !window.hlx.rum.collector) {
-      sampleRUM.enhance = () => {};
+      sampleRUM.enhance = () => { };
       const params = new URLSearchParams(window.location.search);
       const { currentScript } = document;
       const rate = params.get('rum')
@@ -630,6 +630,20 @@ function decorateBlock(block) {
     if (section) section.classList.add(`${shortBlockName}-container`);
     // eslint-disable-next-line no-use-before-define
     decorateButtons(block);
+
+    // --- Universal Editor instrumentation for blocks ---
+    const path = window.location.pathname === '/' ? '/index' : window.location.pathname;
+    const sectionElement = block.closest('.section');
+    if (sectionElement) {
+      const sectionId = sectionElement.getAttribute('data-aue-resource')?.split('/').pop() || 'section';
+      const blockIndex = Array.from(sectionElement.querySelectorAll('.block')).indexOf(block);
+      const blockId = `${shortBlockName}_${blockIndex + 1}`;
+      
+      block.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root/${sectionId}/${blockId}`);
+      block.setAttribute('data-aue-type', 'component');
+      block.setAttribute('data-aue-model', shortBlockName);
+      block.setAttribute('data-aue-label', shortBlockName.charAt(0).toUpperCase() + shortBlockName.slice(1));
+    }
   }
 }
 
