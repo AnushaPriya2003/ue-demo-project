@@ -19,6 +19,30 @@ import {
   loadCSS,
 } from './aem.js';
 
+// Initialize Universal Editor when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Universal Editor: DOM loaded, checking instrumentation...');
+  
+  // Check if Universal Editor service is available
+  if (window.universalEditor) {
+    console.log('Universal Editor: Service detected');
+  } else {
+    console.log('Universal Editor: Service not detected, adding fallback');
+  }
+  
+  // Log all instrumented elements
+  const instrumentedElements = document.querySelectorAll('[data-aue-resource]');
+  console.log(`Universal Editor: Found ${instrumentedElements.length} instrumented elements`);
+  instrumentedElements.forEach((el, index) => {
+    console.log(`Element ${index}:`, {
+      resource: el.getAttribute('data-aue-resource'),
+      type: el.getAttribute('data-aue-type'),
+      model: el.getAttribute('data-aue-model'),
+      label: el.getAttribute('data-aue-label')
+    });
+  });
+});
+
 /**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
