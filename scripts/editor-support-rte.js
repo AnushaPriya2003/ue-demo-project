@@ -14,6 +14,26 @@ export function decorateRichtext(container = document) {
     delete element.dataset.richtextLabel;
   }
 
+  // Auto-detect and instrument text components that don't have richtext attributes
+  container.querySelectorAll('p, div, span, h1, h2, h3, h4, h5, h6').forEach((el) => {
+    const hasText = el.textContent.trim().length > 0;
+    const hasRichtextAttr = el.hasAttribute('data-richtext-prop');
+    const isAlreadyInstrumented = el.hasAttribute('data-aue-resource') || el.closest('[data-aue-resource]');
+    
+    if (hasText && !hasRichtextAttr && !isAlreadyInstrumented && !el.querySelector('[data-aue-resource]')) {
+      const parentSection = el.closest('.section');
+      if (parentSection) {
+        const path = window.location.pathname === '/' ? '/index' : window.location.pathname;
+        const sectionId = parentSection.querySelector('[data-aue-resource]')?.getAttribute('data-aue-resource') 
+          || `urn:aemconnection:${path}/jcr:content/root/${Date.now()}`;
+        
+        el.dataset.richtextResource = sectionId;
+        el.dataset.richtextProp = 'text';
+        el.dataset.richtextLabel = 'Text';
+      }
+    }
+  });
+
   let element;
   while (element = container.querySelector('[data-richtext-prop]:not(div)')) {
     const {

@@ -108,6 +108,13 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  // --- Universal Editor instrumentation ---
+  const path = window.location.pathname === '/' ? '/index' : window.location.pathname;
+  block.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root/header`);
+  block.setAttribute('data-aue-type', 'component');
+  block.setAttribute('data-aue-model', 'header');
+  block.setAttribute('data-aue-label', 'Header');
+
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';

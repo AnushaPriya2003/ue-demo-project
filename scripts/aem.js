@@ -516,6 +516,15 @@ function decorateSections(main) {
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
 
+    // --- Universal Editor instrumentation ---
+    const path = window.location.pathname === '/' ? '/index' : window.location.pathname;
+    const sectionIndex = Array.from(main.querySelectorAll('div.section')).length; // Approximate stable index
+    const sectionId = section.querySelector('div.section-metadata')?.dataset?.name || `section_${sectionIndex + 1}`;
+    section.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root/${sectionId}`);
+    section.setAttribute('data-aue-type', 'container');
+    section.setAttribute('data-aue-model', 'section');
+    section.setAttribute('data-aue-label', 'Section');
+
     // Process section metadata
     const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {

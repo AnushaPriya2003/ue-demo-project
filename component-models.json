@@ -208,13 +208,14 @@
     ]
   },
   {
-    "id": "image",
+    "id": "text",
     "fields": [
       {
-        "component": "reference",
-        "name": "image",
-        "label": "Image",
-        "multi": false
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   }

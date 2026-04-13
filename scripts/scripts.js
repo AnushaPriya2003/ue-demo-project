@@ -84,6 +84,12 @@ function buildAutoBlocks() {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  // --- Universal Editor instrumentation for main ---
+  const path = window.location.pathname === '/' ? '/index' : window.location.pathname;
+  main.setAttribute('data-aue-resource', `urn:aemconnection:${path}/jcr:content/root`);
+  main.setAttribute('data-aue-type', 'container');
+  main.setAttribute('data-aue-label', 'Main Content');
+
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
