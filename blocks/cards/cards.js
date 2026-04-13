@@ -40,7 +40,7 @@ export default function decorate(block) {
 
     const optImg = optimizedPic.querySelector('img');
     optImg.setAttribute('data-aue-prop', 'image');
-    optImg.setAttribute('data-aue-type', 'media');
+    optImg.setAttribute('data-aue-type', 'reference');
     optImg.setAttribute('data-aue-label', 'Image');
 
     img.closest('picture').replaceWith(optimizedPic);
