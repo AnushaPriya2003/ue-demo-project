@@ -1,7 +1,7 @@
-/* Load Universal Editor CORS bridge */
+/* Load Universal Editor CORS bridge — only on preview (.aem.page) and localhost */
 if (window.location.hostname.endsWith('.aem.page') || window.location.hostname === 'localhost') {
   const script = document.createElement('script');
-  script.src = 'https://universal-editor-service.adobe.io/cors.js';
+  script.src = '/universal-editor-cors.js'; // served from repo root via EDS CDN
   document.head.appendChild(script);
 }
 
